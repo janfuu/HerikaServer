@@ -32,19 +32,19 @@ if ($GLOBALS["MINIME_T5"]) {
 }
 
 
-$configFilepath = __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."conf".DIRECTORY_SEPARATOR;
-$GLOBALS["PROFILES"]["default"]="$configFilepath/conf.php";
-foreach (glob($configFilepath . 'conf_????????????????????????????????.php') as $mconf ) {
+$configFilepath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "conf";
+$GLOBALS["PROFILES"]["default"] = $configFilepath . DIRECTORY_SEPARATOR . "conf.php";
+foreach (glob($configFilepath . DIRECTORY_SEPARATOR . 'conf_????????????????????????????????.php') as $mconf) {
     if (file_exists($mconf)) {
-        $filename=basename($mconf);
+        $filename = basename($mconf);
         $pattern = '/conf_([a-f0-9]+)\.php/';
         preg_match($pattern, $filename, $matches);
         $hash = $matches[1];
-        $GLOBALS["PROFILES"][$hash]=$mconf;
+        $GLOBALS["PROFILES"][$hash] = $mconf;
     }
 }
 
-require("$configFilepath/conf.php");
+require($GLOBALS["PROFILES"]["default"]);
 
 if ($GLOBALS["FEATURES"]["MEMORY_EMBEDDING"]["AUTO_CREATE_SUMMARYS"]) {
     $results = $db->fetchAll("select max(gamets_truncated) as gamets_truncated from memory_summary");

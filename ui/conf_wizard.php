@@ -24,10 +24,10 @@ $TITLE = "Config Wizard";
 
 require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."conf".DIRECTORY_SEPARATOR.'conf_loader.php');
 
-$configFilepath=realpath($configFilepath).DIRECTORY_SEPARATOR;
+$configFilepath=realpath($configFilepath);
 
 // Profile selection
-foreach (glob($configFilepath . 'conf_????????????????????????????????.php') as $mconf ) {
+foreach (glob($configFilepath . DIRECTORY_SEPARATOR . 'conf_????????????????????????????????.php') as $mconf ) {
     if (file_exists($mconf)) {
         $filename=basename($mconf);
         $pattern = '/conf_([a-f0-9]+)\.php/';
@@ -49,7 +49,7 @@ if (is_array($GLOBALS["PROFILES"]))
 else
     $GLOBALS["PROFILES"]=[];
 
-$GLOBALS["PROFILES"]=array_merge(["default"=>"$configFilepath/conf.php"],$GLOBALS["PROFILES"]);
+$GLOBALS["PROFILES"]=array_merge(["default"=>"$configFilepath" . DIRECTORY_SEPARATOR . "conf.php"],$GLOBALS["PROFILES"]);
 
 
 if (isset($_SESSION["PROFILE"]) && in_array($_SESSION["PROFILE"],$GLOBALS["PROFILES"])) {
@@ -611,34 +611,36 @@ echo $buffer;
 
 <!-- PHP VALIDATION SCRIPT -->
 <script>
+<?php echo '
 function validateForm() {
-    var inputs = document.querySelectorAll('#top input[type=text], #top input[type=string], #top input[type=url], #top input[type=number], #top textarea');
+    var inputs = document.querySelectorAll(\'#top input[type=text], #top input[type=string], #top input[type=url], #top input[type=number], #top textarea\');
     var invalid = [];
     for (var i = 0; i < inputs.length; i++) {
         var val = inputs[i].value;
         var trimmedVal = val.trim();
-
-        if (trimmedVal.endsWith('\\')) {
+  
+        if (trimmedVal.endsWith(\'\\\\\')) {
             invalid.push(inputs[i].name + " ends with a backslash. Unable to save due to invalid configuration!");
         }
-
-        if (val.indexOf("\\'") !== -1) {
+  
+        if (val.indexOf("\\\\\'") !== -1) {
             invalid.push(inputs[i].name + " contains a backslash followed by a single quote. Unable to save due to invalid configuration!");
         }
-
+  
         if (val.indexOf("<?php") !== -1 || val.indexOf("<?") !== -1 || val.indexOf("?>") !== -1) {
             invalid.push(inputs[i].name + " contains PHP code patterns. Unable to save due to invalid configuration!");
         }
     }
-
+  
     if (invalid.length > 0) {
-        alert("Error: Some input fields contain invalid patterns:\n" + invalid.join("\n"));
+        alert("Error: Some input fields contain invalid patterns:\\n" + invalid.join("\\n"));
         return false;
     }
     return true;
 }
+'; ?>
 </script>
-<!-- END VALIDATION SCRIPT -->
+<!-- END VALIDATION SCRIPT -->  
 
 </body>
 </html>

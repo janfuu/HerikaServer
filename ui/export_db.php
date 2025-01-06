@@ -1,7 +1,7 @@
 <?php
-shell_exec('echo "localhost:5432:dwemer:dwemer":dwemer > /tmp/.pgpass;');
+shell_exec('echo "db:5432:dwemer:dwemer":dwemer > /tmp/.pgpass;');
 shell_exec('chmod 600 /tmp/.pgpass;');
-$response=shell_exec('HOME=/tmp pg_dump -d dwemer -U dwemer  -h localhost');
+$response=shell_exec('HOME=/tmp pg_dump -d dwemer -U dwemer  -h db');
 
 
 // Serve the response as a file download

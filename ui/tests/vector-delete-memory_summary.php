@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 // Database connection details
-$host = 'localhost';
+$host = 'db';
 $port = '5432';
 $dbname = 'dwemer';
 $schema = 'public';

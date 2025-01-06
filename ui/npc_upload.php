@@ -11,8 +11,10 @@ $rootPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
 $enginePath = $rootPath . ".." . DIRECTORY_SEPARATOR;
 $configFilepath = $rootPath . "conf" . DIRECTORY_SEPARATOR;
 
+$configFilepath=realpath($configFilepath);
+
 // Database connection details
-$host = 'localhost';
+$host = 'db';
 $port = '5432';
 $dbname = 'dwemer';
 $schema = 'public';
@@ -21,7 +23,7 @@ $password = 'dwemer';
 
 // Profile selection
 $GLOBALS["PROFILES"] = []; // Initialize the PROFILES array
-foreach (glob($configFilepath . 'conf_????????????????????????????????.php') as $mconf) {
+foreach (glob($configFilepath . DIRECTORY_SEPARATOR . 'conf_????????????????????????????????.php') as $mconf) {
     if (file_exists($mconf)) {
         $filename = basename($mconf);
         $pattern = '/conf_([a-f0-9]+)\.php/';

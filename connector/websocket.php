@@ -17,7 +17,7 @@ class websocket implements MessageComponentInterface {
     }
 
     private function connectDB() {
-        $host = 'localhost';
+        $host = 'db';
         $port = '5432';
         $dbname = 'dwemer';
         $username = 'dwemer';

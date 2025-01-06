@@ -120,7 +120,7 @@ $rootEnginePath = __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;
 
 $TITLE = "QUICKSTART MENU"; // Updated title
 
-$configFilepath = realpath($configFilepath) . DIRECTORY_SEPARATOR;
+$configFilepath = realpath($configFilepath);
 
 // Include necessary files
 require_once($rootPath . "lib" . DIRECTORY_SEPARATOR . "model_dynmodel.php");
@@ -138,7 +138,7 @@ require_once(__DIR__."/../debug/db_updates.php");
 /* END of check database for updates */
 
 // Profile selection
-foreach (glob($configFilepath . 'conf_????????????????????????????????.php') as $mconf) {
+foreach (glob($configFilepath . DIRECTORY_SEPARATOR . 'conf_????????????????????????????????.php') as $mconf) {
     if (file_exists($mconf)) {
         $filename = basename($mconf);
         $pattern = '/conf_([a-f0-9]+)\.php/';

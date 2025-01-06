@@ -8,10 +8,10 @@ ini_set('display_errors', '1');
 // Paths
 $rootPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
 $enginePath = $rootPath . ".." . DIRECTORY_SEPARATOR;
-$configFilepath = $rootPath . "conf" . DIRECTORY_SEPARATOR;
+// The $configFilepath variable is not used in the script, so it can be removed.
 
 // Database connection details
-$host = 'localhost';
+$host = 'db';
 $port = '5432';
 $dbname = 'dwemer';
 $schema = 'public';

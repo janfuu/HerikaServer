@@ -11,13 +11,15 @@ require_once($enginePath . "lib" .DIRECTORY_SEPARATOR."data_functions.php");
 
 $configFilepath=$enginePath."conf".DIRECTORY_SEPARATOR;
 
+$configFilepath=realpath($configFilepath);
+
 if ($method === 'POST') {
 
   // Read JSON data from the request
     $jsonDataInput = json_decode(file_get_contents("php://input"), true);
 
-    $files=glob($configFilepath . 'conf_????????????????????????????????.php');
-    $files[]=$configFilepath. 'conf.php';
+    $files=glob($configFilepath . DIRECTORY_SEPARATOR . 'conf_????????????????????????????????.php');
+    $files[]=$configFilepath . DIRECTORY_SEPARATOR . 'conf.php';
 
     foreach ($files as $mconf ) {
         if (file_exists($mconf)) {

@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['reset_tables'])) {
-    $host = 'localhost';
+    $host = 'db';
     $port = '5432';
     $dbname = 'dwemer';
     $username = 'dwemer';
@@ -49,7 +49,7 @@ if (isset($_GET['reset_tables'])) {
 }
 
 if (isset($_GET['check_tables'])) {
-    $host = 'localhost';
+    $host = 'db';
     $port = '5432';
     $dbname = 'dwemer';
     $username = 'dwemer';

@@ -17,11 +17,11 @@ if (!file_exists($configFilepath."conf.php")) {
 
 require_once($rootEnginePath . "conf".DIRECTORY_SEPARATOR."conf.php");
 
-$configFilepath=realpath($configFilepath).DIRECTORY_SEPARATOR;
+$configFilepath=realpath($configFilepath);
 
 // Profile selection
 $GLOBALS["PROFILES"]["default"]="$configFilepath/conf.php";
-foreach (glob($configFilepath . 'conf_????????????????????????????????.php') as $mconf ) {
+foreach (glob($configFilepath .DIRECTORY_SEPARATOR.'conf_????????????????????????????????.php') as $mconf ) {
     if (file_exists($mconf)) {
         $filename=basename($mconf);
         $pattern = '/conf_([a-f0-9]+)\.php/';

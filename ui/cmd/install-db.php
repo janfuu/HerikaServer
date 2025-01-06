@@ -3,7 +3,7 @@
 $enginePath =__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;
 
 // Database connection details
-$host = 'localhost';
+$host = 'db';
 $port = '5432';
 $dbname = 'dwemer';
 $schema = 'public';

@@ -7,13 +7,13 @@ session_start();
 
 $enginePath =__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;
 
-$configFilepath=realpath($enginePath."conf".DIRECTORY_SEPARATOR);
+$configFilepath=realpath($enginePath."conf");
 
 require_once($enginePath."conf".DIRECTORY_SEPARATOR."conf.php");
 require_once($enginePath."lib".DIRECTORY_SEPARATOR."{$GLOBALS["DBDRIVER"]}.class.php");
 
 $GLOBALS["PROFILES"]["default"]="$configFilepath/conf.php";
-foreach (glob($configFilepath . '/conf_????????????????????????????????.php') as $mconf ) {
+foreach (glob($configFilepath . DIRECTORY_SEPARATOR . '/conf_????????????????????????????????.php') as $mconf ) {
     if (file_exists($mconf)) {
         $filename=basename($mconf);
         $pattern = '/conf_([a-f0-9]+)\.php/';

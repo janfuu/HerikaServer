@@ -19,6 +19,7 @@ requireFilesRecursively($enginePath . "ext" . DIRECTORY_SEPARATOR, "globals.php"
 if (isset($_SESSION["PROFILE"])) {
     require_once($_SESSION["PROFILE"]);
 } else {
+    $configFilepath = $enginePath . "conf";  
     $_SESSION["PROFILE"] = "$configFilepath/conf.php";
 }
 

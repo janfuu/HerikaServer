@@ -1,0 +1,307 @@
+Array
+(
+    [0] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Thief: Don't you walk away from me!
+        )
+
+    [1] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Thief: Yeagh!
+        )
+
+    [2] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Orc: Oof!
+        )
+
+    [3] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Orc: Weergh!
+        )
+
+    [4] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Thief: Agh!
+        )
+
+    [5] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Thief: Weergh!
+        )
+
+    [6] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Thief: No more! I yield! I yield!
+        )
+
+    [7] => Array
+        (
+            [role] => user
+            [content] => The Narrator: The party engages combat with Thief
+        )
+
+    [8] => Array
+        (
+            [role] => user
+            [content] => The Narrator:Ruklov has defeated Thief(powerful enemy) with Ancient Nord Sword
+        )
+
+    [9] => Array
+        (
+            [role] => user
+            [content] => 
+        )
+
+    [10] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: Wow, that was quite the display, Ruklov! You really know how to take down a thief. 
+Urzul: Should I start calling you the Thief Slayer? You're making this look almost too easy! (talking to Ruklov)
+        )
+
+    [11] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: Should I start calling you the Thief Slayer? You're making this look almost too easy! (talking to Ruklov)
+        )
+
+    [12] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Thief: Nuh...
+        )
+
+    [13] => Array
+        (
+            [role] => user
+            [content] => The Narrator: The party engages combat with Wolf
+        )
+
+    [14] => Array
+        (
+            [role] => user
+            [content] => The Narrator:Urzul has defeated Wolf(powerful enemy) with Iron War Axe
+        )
+
+    [15] => Array
+        (
+            [role] => user
+            [content] => 
+        )
+
+    [16] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: You know, it’s almost sad how easily I took down that wolf. 
+Urzul: I must be getting really good at this! Should I let you take the next one, or do you need a bit more practice? (talking to Ruklov)
+        )
+
+    [17] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: I must be getting really good at this! Should I let you take the next one, or do you need a bit more practice? (talking to Ruklov)
+        )
+
+    [18] => Array
+        (
+            [role] => user
+            [content] => The Narrator:Ruklov uses This should not be visible
+        )
+
+    [19] => Array
+        (
+            [role] => user
+            [content] => Ruklov:Urzul you are so quaint (Talking to everyone)
+        )
+
+    [20] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: Quaint? Now that’s a new one! Careful Ruklov, or I might just start thinking you have a soft spot for me! (talking to Ruklov)
+        )
+
+    [21] => Array
+        (
+            [role] => user
+            [content] => Ruklov:Well you are not so ugly For an Orc (Talking to everyone)
+        )
+
+    [22] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: Well, aren’t you quite the charmer?. I’ll take that as a compliment, but don't think it means you can get away with calling me quaint! (talking to Ruklov)
+        )
+
+    [23] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Secunda's Kiss ,Hold: Whiterun, current date Day name: Sundas, Hour: 4:15 PM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [24] => Array
+        (
+            [role] => user
+            [content] => The Narrator: SCENARIO CHANGE, Secunda's Kiss, hold: Whiterun, timeline mark: 3 hours ago  
+        )
+
+    [25] => Array
+        (
+            [role] => user
+            [content] => The Narrator: The party engages combat with Wolf
+        )
+
+    [26] => Array
+        (
+            [role] => user
+            [content] => The Narrator:Ruklov has defeated Wolf(powerful enemy) with Ancient Nord Sword
+        )
+
+    [27] => Array
+        (
+            [role] => user
+            [content] => 
+        )
+
+    [28] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: Nice sword skills, Ruklov!. But you know, if I had that ancient Nord sword, I'd make it sing!. 
+Urzul: Maybe we should swap gear so I can show you how it's done? (talking to Ruklov)
+        )
+
+    [29] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: Maybe we should swap gear so I can show you how it's done? (talking to Ruklov)
+        )
+
+    [30] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Skyrim, outdoors, current date Day name: Sundas, Hour: 4:24 PM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [31] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Elysium Estate ,Hold: Whiterun, current date Day name: Sundas, Hour: 4:33 PM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [32] => Array
+        (
+            [role] => user
+            [content] => The Narrator: SCENARIO CHANGE, Elysium Estate, hold: Whiterun, timeline mark: 2 hours ago  
+        )
+
+    [33] => Array
+        (
+            [role] => user
+            [content] => The Narrator:Ruklov has defeated Wolf(powerful enemy) with Ancient Nord Sword
+        )
+
+    [34] => Array
+        (
+            [role] => user
+            [content] => The Narrator:Ruklov has defeated Wolf(powerful enemy) with Ancient Nord Sword
+        )
+
+    [35] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Skyrim, outdoors, current date Day name: Sundas, Hour: 4:44 PM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [36] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Pelagia Farm ,Hold: Whiterun, current date Day name: Sundas, Hour: 4:48 PM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [37] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Whiterun ,Hold: Whiterun, current date Day name: Sundas, Hour: 4:55 PM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [38] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Skyrim, outdoors, current date Day name: Sundas, Hour: 5:00 PM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [39] => Array
+        (
+            [role] => user
+            [content] => The Narrator: The party engages combat with Wolf
+        )
+
+    [40] => Array
+        (
+            [role] => user
+            [content] => The Narrator:Ruklov has defeated Wolf(powerful enemy) with Ancient Nord Sword
+        )
+
+    [41] => Array
+        (
+            [role] => user
+            [content] => The Narrator:Urzul has defeated Wolf(powerful enemy) with Iron War Axe
+        )
+
+    [42] => Array
+        (
+            [role] => user
+            [content] => 
+        )
+
+    [43] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: Look at these poor wolves, Ruklov!. I doubt they knew what hit them!. 
+Urzul: Maybe they should have taken up knitting instead of prowling around! (talking to Ruklov)
+        )
+
+    [44] => Array
+        (
+            [role] => assistant
+            [content] => Urzul: Maybe they should have taken up knitting instead of prowling around! (talking to Ruklov)
+        )
+
+    [45] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Orc: If you let me go, I will leave and never return.
+        )
+
+    [46] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Riverwood ,Hold: Whiterun, current date Day name: Sundas, Hour: 5:24 PM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [47] => Array
+        (
+            [role] => user
+            [content] => The Narrator: SCENARIO CHANGE, Riverwood, hold: Whiterun, timeline mark: 0 hours ago  
+        )
+
+    [48] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Orc: Please, what are you going to do with me?
+        )
+
+    [49] => Array
+        (
+            [role] => user
+            [content] => Ruklov:Why We are Reaching Helgen Once there I will let you go If you want (Talking to everyone)
+        )
+
+)

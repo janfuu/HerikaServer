@@ -1,0 +1,45 @@
+Array
+(
+    [0] => Array
+        (
+            [role] => user
+            [content] => The Narrator: SCENARIO CHANGE, Sleeping Giant Inn, hold: Riverwood, timeline mark: 0 hours ago  
+        )
+
+    [1] => Array
+        (
+            [role] => user
+            [content] => level:1,name:"Prisoner",race:"Nord"
+        )
+
+    [2] => Array
+        (
+            [role] => user
+            [content] => level:1,name:"Prisoner",race:"Nord"
+        )
+
+    [3] => Array
+        (
+            [role] => user
+            [content] => level:1,name:"Prisoner",race:"Nord"
+        )
+
+    [4] => Array
+        (
+            [role] => user
+            [content] => level:1,name:"Prisoner",race:"Nord"
+        )
+
+    [5] => Array
+        (
+            [role] => user
+            [content] => The Narrator: background dialogue:  Svenja: Yes?
+        )
+
+    [6] => Array
+        (
+            [role] => user
+            [content] => The Narrator:  Svenja feels a sudden shock...and feels 'more real'
+        )
+
+)

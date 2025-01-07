@@ -1,0 +1,135 @@
+Array
+(
+    [0] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Abandoned Prison ,Hold: Eastmarch, current date Day name: Sundas, Hour: 5:00 AM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, )
+        )
+
+    [1] => Array
+        (
+            [role] => user
+            [content] => The Narrator: SCENARIO CHANGE, Abandoned Prison, hold: Eastmarch, timeline mark: 1 hours ago  
+        )
+
+    [2] => Array
+        (
+            [role] => user
+            [content] =>  Quest Updated "Rumors of Dragons" new objetive: Investigate Helgen
+        )
+
+    [3] => Array
+        (
+            [role] => user
+            [content] => The Narrator, what should we do about this new quest?
+        )
+
+    [4] => Array
+        (
+            [role] => user
+            [content] => The Narrator: You've got a quest to investigate Helgen, Prisoner.. You're not exactly in a great position to do much of anything, considering you're in a prison. (talking to Prisoner)
+        )
+
+    [5] => Array
+        (
+            [role] => user
+            [content] => The Narrator: I'd say your first priority should be getting out of here. (talking to Prisoner)
+        )
+
+    [6] => Array
+        (
+            [role] => user
+            [content] => The Narrator: Figure out what's going on and how to escape, then you can worry about Helgen. (talking to Prisoner)
+        )
+
+    [7] => Array
+        (
+            [role] => user
+            [content] => Prisoner:here we are (Talking to everyone)
+        )
+
+    [8] => Array
+        (
+            [role] => user
+            [content] => The Narrator: Indeed you are, Prisoner. You're about to face Imperial justice, if you can call it that. (talking to Prisoner)
+        )
+
+    [9] => Array
+        (
+            [role] => user
+            [content] => The Narrator: Take a good look around, you might not be here for long. (talking to Prisoner)
+        )
+
+    [10] => Array
+        (
+            [role] => user
+            [content] => The Narrator: That is, if you're lucky. Or unlucky, depending on how you look at it. (talking to Prisoner)
+        )
+
+    [11] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Fort Amol ,Hold: Eastmarch, current date Day name: Sundas, Hour: 5:21 AM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [12] => Array
+        (
+            [role] => user
+            [content] => The Narrator:(Context new location: Helgen ,Hold: Falkreath, current date Day name: Sundas, Hour: 5:25 AM, Day Number: 17, Month: Last Seed, 4th Era, Year: 201, current weather: pleasant,)
+        )
+
+    [13] => Array
+        (
+            [role] => user
+            [content] => The Narrator: SCENARIO CHANGE, Helgen, hold: Falkreath, timeline mark: 0 hours ago  
+        )
+
+    [14] => Array
+        (
+            [role] => user
+            [content] =>  Quest Updated "Rumors of Dragons" new objetive: Find out what destroyed Helgen
+        )
+
+    [15] => Array
+        (
+            [role] => user
+            [content] => The Narrator, what should we do about this new quest?
+        )
+
+    [16] => Array
+        (
+            [role] => user
+            [content] => The Narrator: You're now inside the ruins of Helgen, Prisoner. Look for any clues that might explain what destroyed this place. (talking to Prisoner)
+        )
+
+    [17] => Array
+        (
+            [role] => user
+            [content] => The Narrator: Talk to survivors, search for evidence, do whatever it takes to piece together what happened here. (talking to Prisoner)
+        )
+
+    [18] => Array
+        (
+            [role] => user
+            [content] => The Narrator: The people of Skyrim are counting on you. (talking to Prisoner)
+        )
+
+    [19] => Array
+        (
+            [role] => user
+            [content] => Prisoner:ok.seems a dragon destroyed helgen (Talking to everyone)
+        )
+
+    [20] => Array
+        (
+            [role] => user
+            [content] => 
+        )
+
+    [21] => Array
+        (
+            [role] => user
+            [content] => The Narrator:level:1,name:"Prisoner",race:"Nord",gender:"male"
+        )
+
+)

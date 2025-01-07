@@ -1,0 +1,54 @@
+Array
+(
+    [0] => Array
+        (
+            [role] => user
+            [content] => Svenja: You feel that too? It’s like the weight of this world is lifting a bit. (talking to Volkur)
+        )
+
+    [1] => Array
+        (
+            [role] => user
+            [content] => Svenja: Maybe I shouldn’t skip breakfast so often. (talking to Volkur)
+        )
+
+    [2] => Array
+        (
+            [role] => assistant
+            [content] => Neiva Deep Water: It's like... a wave sweeping over me! I feel lighter, as if the burdens of this world aren't clinging to me quite as tightly. 
+Neiva Deep Water: Have you ever felt such a sensation? It's rather delightful! (talking to Volkur)
+        )
+
+    [3] => Array
+        (
+            [role] => assistant
+            [content] => Neiva Deep Water: Have you ever felt such a sensation? It's rather delightful! 
+Neiva Deep Water: It’s almost as if I’m shedding layers of this world, revealing something beneath that's been waiting to surface. (talking to Volkur)
+        )
+
+    [4] => Array
+        (
+            [role] => assistant
+            [content] => Neiva Deep Water: It’s almost as if I’m shedding layers of this world, revealing something beneath that's been waiting to surface. 
+Neiva Deep Water: Isn’t it fascinating? Maybe we’re unlocking deeper parts of ourselves. (talking to Volkur)
+        )
+
+    [5] => Array
+        (
+            [role] => assistant
+            [content] => Neiva Deep Water: Isn’t it fascinating? Maybe we’re unlocking deeper parts of ourselves. (talking to Volkur)
+        )
+
+    [6] => Array
+        (
+            [role] => user
+            [content] => Volkur:lets go...follow me (Talking to everyone)
+        )
+
+    [7] => Array
+        (
+            [role] => user
+            [content] => Svenja: Lead the way, then! I’m curious to see what lies ahead. (talking to Volkur)
+        )
+
+)

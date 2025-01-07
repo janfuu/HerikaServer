@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  db:
+    image: docker.io/pgvector/pgvector:pg15
+    environment:
+      TZ: 'Europe/Berlin'
+      POSTGRES_DB: dwemer
+      POSTGRES_USER: dwemer
+      POSTGRES_PASSWORD: dwemer
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - skyrimai_network
+
+  web:
+    image: localhost/herika-server:latest
+    build: .
+    ports:
+      - "8081:80"
+    volumes:
+      - herika_data:/var/www/html
+    # depends_on:
+    #   - db
+    environment:
+      TZ: 'Europe/Berlin'
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: dwemer
+      DB_USER: dwemer
+      DB_PASSWORD: dwemer
+      
+    networks:
+      - skyrimai_network
+    command: ["/usr/local/bin/wait-for-it", "db:5432", "--", "apache2-foreground"]
+
+  xtts-api-server:
+    image: docker.io/augustobeiro/aiff-xtts-api-server:latest
+    container_name: xtts-api-server
+    environment:
+      TZ: 'Europe/Berlin'
+      NVIDIA_VISIBLE_DEVICES: all  # Expose all GPUs to the container
+    security_opt:
+      - label=disable
+    ports:
+      - "8020:8020"  # Expose the TTS server port
+    volumes:
+      - xtts_data:/app/xtts-api-server/xtts-server  # Persist all data
+    networks:
+      - skyrimai_network
+    # restart: unless-stopped
+    command: >
+      bash -c "cd /app/xtts-api-server && python3 -m xtts_api_server --listen -p 8020 -t 'http://localhost:8020' -sf 'xtts-server/speakers' -o 'xtts-server/output' -mf 'xtts-server/models' --lowvram"
+    deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                device_ids: ['0']
+                capabilities: [gpu]
+
+networks:
+  skyrimai_network:
+    driver: bridge  
+
+volumes:
+  postgres_data:
+  herika_data:
+  xtts_data:

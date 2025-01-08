@@ -51,8 +51,9 @@ services:
     networks:
       - skyrimai_network
     # restart: unless-stopped
+    # append --lowvram or --deepspeed to command xtts_api_server to use less VRAM or DeepSpeed for inference
     command: >
-      bash -c "cd /app/xtts-api-server && python3 -m xtts_api_server --listen -p 8020 -t 'http://localhost:8020' -sf 'xtts-server/speakers' -o 'xtts-server/output' -mf 'xtts-server/models' --lowvram"
+      bash -c "cd /app/xtts-api-server && python3 -m xtts_api_server --listen -p 8020 -t 'http://localhost:8020' -sf 'xtts-server/speakers' -o 'xtts-server/output' -mf 'xtts-server/models' --deepspeed"
     deploy:
         resources:
           reservations:

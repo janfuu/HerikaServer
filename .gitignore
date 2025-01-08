@@ -31,4 +31,6 @@ jspm_packages/
 dist/
 build/
 
+# Specific files and directories
 zzz/
+data/TheNarrator.wav

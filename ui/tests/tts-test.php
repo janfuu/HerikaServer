@@ -6,6 +6,10 @@ $startTime = microtime(true);
 $localPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
 $enginePath = $localPath;
 
+// Initialize test-specific globals
+require_once($enginePath . "lib" . DIRECTORY_SEPARATOR . "test_init_globals.php");
+
+// Then include other files
 require_once($enginePath . "conf" . DIRECTORY_SEPARATOR . "conf.php");
 require_once($enginePath . "lib" . DIRECTORY_SEPARATOR . "$DBDRIVER.class.php");
 require_once($enginePath . "conf" . DIRECTORY_SEPARATOR . "conf.php"); // API KEY must be there

@@ -35,3 +35,4 @@ build/
 zzz/
 data/TheNarrator.wav
 docker-compose-test.yml
+conf/conf.php

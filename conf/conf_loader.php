@@ -133,4 +133,15 @@ function _ak($code) {
 	return $confS[$code];
 }
 
+// Add function to load service URLs from environment variables
+function getServiceUrl($service, $default) {
+    $host = getenv(strtoupper($service) . '_HOST');
+    $port = getenv(strtoupper($service) . '_PORT');
+    
+    if ($host && $port) {
+        return "http://$host:$port";
+    }
+    return $default;
+}
+
 ?>

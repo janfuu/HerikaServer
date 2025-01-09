@@ -253,7 +253,7 @@ foreach ($currentConf as $pname=>$parms) {
     } else if ($parms["type"]=="url") {
         $checkButton="<button class='url' type='button' onclick=\"checkUrlFromServer('$fieldName')\">Check</button>";
         echo "<p class='conf-item'><label for='$fieldName'>$pname</label><input  $FORCE_DISABLED class='url' type='url' value='".htmlspecialchars($fieldValue,ENT_QUOTES)."' name='$fieldName'/>$checkButton<span> {$parms["description"]}</span></p>".PHP_EOL;
-
+    
     } else if ($parms["type"]=="select") {
         $buffer="";
         foreach ($parms["values"] as $item)
@@ -612,13 +612,35 @@ echo $buffer;
 <!-- PHP VALIDATION SCRIPT -->
 <script>
 <?php echo '
+function validateUrl(url) {
+    // Allow Docker service pattern: word:port
+    if (/^https?:\/\/[\w-]+(:\d+)?/.test(url)) {
+        return true;
+    }
+    
+    try {
+        new URL(url);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
+
 function validateForm() {
     var inputs = document.querySelectorAll(\'#top input[type=text], #top input[type=string], #top input[type=url], #top input[type=number], #top textarea\');
     var invalid = [];
     for (var i = 0; i < inputs.length; i++) {
         var val = inputs[i].value;
         var trimmedVal = val.trim();
-  
+        
+        // Special handling for URL fields with Docker service names
+        if (inputs[i].type === \'url\') {
+            if (!validateUrl(val)) {
+                invalid.push(inputs[i].name + " is not a valid URL or Docker service name (example: http://service-name:port)");
+                continue;
+            }
+        }
+
         if (trimmedVal.endsWith(\'\\\\\')) {
             invalid.push(inputs[i].name + " ends with a backslash. Unable to save due to invalid configuration!");
         }
@@ -640,7 +662,7 @@ function validateForm() {
 }
 '; ?>
 </script>
-<!-- END VALIDATION SCRIPT -->  
+<!-- END VALIDATION SCRIPT -->
 
 </body>
 </html>

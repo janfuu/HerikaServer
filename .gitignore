@@ -34,3 +34,4 @@ build/
 # Specific files and directories
 zzz/
 data/TheNarrator.wav
+docker-compose-test.yml

@@ -1,19 +1,10 @@
-# CHIM Server
+# CHIM PHP Server 
 
-Server for the Skyrim mod "CHIM". This component serves as a bridge between the SKSE plugin and various AI providers of text-to-speech, speech-to-text, and AI-based chat generators such as ChatGPT, MeloTTS, koboldcpp, Openrouter, XTTS, etc.
+Containerized deployment of [CHIM Server](https://github.com/abeiro/HerikaServer). Unless you know what you are doing, you'll probably want to grab DwemerDistro from [CHIM Skyrim Mod](https://www.nexusmods.com/skyrimspecialedition/mods/126330) instead.
 
-Ultimately you will have meaningful interactions with AI NPCs. 
+## Usage
 
-## Other Features:
-- Any NPC can be an AI, including group conversations.
-- Long-term memory for in-game characters, employing various techniques to mitigate the lack of long-term memory in current LLMs (Language Model Models).
-- Deep world awareness.
-- An AI Narrator to narrate your adventures and provide help.
-- Function calling action commands (e.g., trade with me, move here, attack that monster, etc.).
-- Dynamic character personalities that update over your playthrough.
+`docker pull ghcr.io/janfuu/chim-php-server:latest`  
 
-## Attributions
-CHIM character biographies use material from the "Skyrim: Characters" articles on Unofficial Elder Scrolls Pages and are licensed under the Creative Commons Attribution-Share Alike License.
-
-## CHIM Mod Page
-[CHIM Skyrim Mod](https://www.nexusmods.com/skyrimspecialedition/mods/126330)
+Needs at least an additional PostgreSQL database container (with vector extensions).  
+Example docker-compose.yml with xtts and minime-t5 (WIP) in [./examples](./examples)

@@ -49,6 +49,7 @@ services:
       - "8020:8020"
     volumes:
       - xtts_data:/app/xtts-api-server/xtts-server
+    networks: 
       - skyrimai_network
     # append --lowvram or --deepspeed to command xtts_api_server to use less VRAM or DeepSpeed for inference
     command: >

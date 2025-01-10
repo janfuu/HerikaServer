@@ -31,11 +31,10 @@ services:
       DB_PORT: 5432
       DB_NAME: dwemer
       DB_USER: dwemer
-      DB_PASSWORD: dwemer
-      
+      DB_PASSWORD: dwemer   
     networks:
       - skyrimai_network
-    command: ["/usr/local/bin/wait-for-it", "db:5432", "--", "apache2-foreground"]
+    command: ["/usr/local/bin/wait-for-it", "db:5432", "--", "sh", "-c", "apache2ctl start && sleep infinity"]
 
   xtts-api-server:
     image: docker.io/augustobeiro/aiff-xtts-api-server:latest

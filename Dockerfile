@@ -97,6 +97,10 @@ RUN chmod +x /usr/local/bin/wait-for-it
 RUN chown -R $USER:www-data /var/www/html && \
     chmod -R 775 /var/www/html
 
+# Redirect logs to Docker log collector
+RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
+    ln -sf /dev/stderr /var/log/apache2/error.log
+    
 # Expose port 80 for HTTP traffic
 EXPOSE 80
 

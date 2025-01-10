@@ -13,7 +13,7 @@ $HERIKA_PERS="You are The Narrator in a Skyrim adventure. You will only talk to 
     . "Talk about quests and last events."; //NPC personality.
 $DYNAMIC_PROFILE=false; //Dynamic profile updates during certain ingame events.
 $MINIME_T5=false; //Assists smaller weight LLMs with action and memory functions.
-
+$MINIME_T5_URL = "http://127.0.0.1:8082"; //Minime-T5 endpoint URL
 //[Advanced Configuration]
 $RECHAT_H=2; //Rechat Rounds. Higher values will increase the amount of rounds NPC's will talk amongst themselves.
 $RECHAT_P=50; //Rechat Probability.

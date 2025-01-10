@@ -174,6 +174,7 @@ if (isset($_GET["profile"])) {
     
     $OVERRIDES["BOOK_EVENT_ALWAYS_NARRATOR"]=$GLOBALS["BOOK_EVENT_ALWAYS_NARRATOR"];
     $OVERRIDES["MINIME_T5"]=$GLOBALS["MINIME_T5"];
+    $OVERRIDES["MINIME_T5_URL"]=$GLOBALS["MINIME_T5_URL"];
     $OVERRIDES["STTFUNCTION"]=$GLOBALS["STTFUNCTION"];
     $OVERRIDES["TTSFUNCTION_PLAYER"]=$GLOBALS["TTSFUNCTION_PLAYER"];
     $OVERRIDES["TTSFUNCTION_PLAYER_VOICE"]=$GLOBALS["TTSFUNCTION_PLAYER_VOICE"];
@@ -190,6 +191,7 @@ if (isset($_GET["profile"])) {
     
     $GLOBALS["BOOK_EVENT_ALWAYS_NARRATOR"]=$OVERRIDES["BOOK_EVENT_ALWAYS_NARRATOR"];
     $GLOBALS["MINIME_T5"]=$OVERRIDES["MINIME_T5"];
+    $OVERRIDES["MINIME_T5_URL"]=$GLOBALS["MINIME_T5_URL"];
     $GLOBALS["STTFUNCTION"]=$OVERRIDES["STTFUNCTION"];
     $GLOBALS["TTSFUNCTION_PLAYER"]=$OVERRIDES["TTSFUNCTION_PLAYER"];
     $GLOBALS["TTSFUNCTION_PLAYER_VOICE"]=$OVERRIDES["TTSFUNCTION_PLAYER_VOICE"];
@@ -550,7 +552,9 @@ if ($GLOBALS["FUNCTIONS_ARE_ENABLED"]) {
         
 
         $TEST_TEXT=strtr($TEST_TEXT,["."=>" ","{$GLOBALS["PLAYER_NAME"]}:"=>""]);
-        $command=file_get_contents("http://127.0.0.1:8082/command?text=".urlencode($TEST_TEXT));
+    //    $command=file_get_contents("http://127.0.0.1:8082/command?text=".urlencode($TEST_TEXT));
+        $command=file_get_contents($GLOBALS["MINIME_T5_URL"] . "/command?text=" . urlencode($TEST_TEXT));
+
         if ($command && $command !== "null") {
             $preCommand=json_decode($command,true);
             if ($preCommand["is_command"]!="Talk") {

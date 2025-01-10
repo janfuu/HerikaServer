@@ -7,7 +7,20 @@
   "HERIKA_PERS": {"userlvl":"basic","type":"longstring","description":"NPC Personality. Treat it like a DnD character bio.<br><b>Variables you can use:</b><br>#PLAYER_NAME# = Your player name","helpurl":"https://www.nexusmods.com/skyrimspecialedition/articles/5321"},
   "dynamic_profile_b1": {"userlvl":"pro","type":"util","description":"Use LLM (the regular connector not the JSON!) to update an NPC's personality dynamically, based on recent events.","action":"action_dynamic_profile_b1.php","name":"Auto Fill Biography"},
   "DYNAMIC_PROFILE":{"userlvl":"pro","type":"boolean","description":"Will trigger dynamic profile updates during certain ingame events (such as sleeping). Will cause the AI personality to dynamically change during gameplay based on player interaction."},
-  "MINIME_T5":{"userlvl":"basic","type":"boolean","scope":"global","description":"Enable Minime-T5 LLM. Helps dumber LLM's be more accurate with action and memory functions. Must be enabled in DwemerDistro under Tools/components. <br> <strong> Must be configued in default profile and only works in English!</strong>"},
+  "MINIME_T5": {
+    "_title": "Minime-T5",
+    "type": "boolean",
+    "userlvl": "basic", 
+    "scope": "global",
+    "description": "Enable Minime-T5 LLM. Helps dumber LLM's be more accurate with action and memory functions. Must be enabled in DwemerDistro under Tools/components. <br> <strong> Must be configued in default profile and only works in English!</strong>"
+  },
+  "MINIME_T5_URL": {
+    "_title": "Minime-T5",
+    "type": "url",
+    "description": "Minime-T5 endpoint URL. Default: http://127.0.0.1:8082",
+    "scope": "global",
+    "userlvl": "pro"
+  },
   "OGHMA_INFINIUM": {"type":"boolean","userlvl":"basic","description":"Needs Minime-T5 enabled and running. Tamriel lore information will be added to the prompt, enhancing their understanding on specific topics."},
   "RECHAT_H": {"userlvl":"basic","type":"integer","description":"Rechat Rounds. Higher values will increase the amount of times AI NPC's will go back-and-forth during a conversation.<br>1 = 1 Round | 2 = 2 Rounds | 3 = 3 Rounds etc","_title":"Advanced Configuration"},
   "RECHAT_P": {"userlvl":"basic","type":"integer","description":"Rechat Probability. Chance that an AI NPC will continue an ongoing conversation.<br>0 = Always | 50 = Sometimes | 100 = Never"},
@@ -304,15 +317,14 @@
       "AUTO_CREATE_SUMMARYS": {"type":"boolean","description":"Will combine individual memory logs into larger ones. Is more accurate for memory recollection but will use up more tokens. If using koboldcpp, use the multiuser mode to avoid locking."},
       "AUTO_CREATE_SUMMARY_INTERVAL": {"type":"integer","description":"Time frame used to pack summary data. 10 = 13 in-game hours | 5 = 7.5 in-game hours etc"},
       "MEMORY_BIAS_A": {"type":"number","description":"From 0 (never) to 100 (always). Minimal distance to offer memory."},
-      "MEMORY_BIAS_B": {"type":"number","description":"From 0 (never) to 100 (always). Minimal distance to offer and endorse memory."}
-      
+      "MEMORY_BIAS_B": {"type":"number","description":"From 0 (never) to 100 (always). Minimal distance to offer and endorse memory."}  
     },
-  "MISC": {
-    "_title":"Other Options",
-    "ADD_TIME_MARKS":{"type":"boolean","description":"Add timestamps to the context logs. Helps with memory recollection."},
-    "ITT_QUALITY": {"type":"integer","description":"Only for Soulgaze HD. Compression quality can be set from 0 (lower and unusable) to 100 (near no compression). More quality means higher file size, ergo more tokens.","scope":"global"},
-    "TTS_RANDOM_PITCH": {"type":"boolean","userlvl":"pro","description":"WIP DO NOT USE! Adjusting the pitch when generating the voice for this actor will add variation, so actors using the same voice sound slightly distinct."}
-  }
+    "MISC": {
+      "_title":"Other Options",
+      "ADD_TIME_MARKS":{"type":"boolean","description":"Add timestamps to the context logs. Helps with memory recollection."},
+      "ITT_QUALITY": {"type":"integer","description":"Only for Soulgaze HD. Compression quality can be set from 0 (lower and unusable) to 100 (near no compression). More quality means higher file size, ergo more tokens.","scope":"global"},
+      "TTS_RANDOM_PITCH": {"type":"boolean","userlvl":"pro","description":"WIP DO NOT USE! Adjusting the pitch when generating the voice for this actor will add variation, so actors using the same voice sound slightly distinct."}
+    }
   }
   
 }

@@ -39,7 +39,9 @@ if (false) {
         $pattern = '/\(talking to [^()]+\)/i';
         $TEST_TEXT = preg_replace($pattern, '', $TEST_TEXT);
 
-        $command=file_get_contents("http://127.0.0.1:8082/command?text=".urlencode($TEST_TEXT));
+    //    $command=file_get_contents("http://127.0.0.1:8082/command?text=".urlencode($TEST_TEXT));
+        $command=file_get_contents($GLOBALS["MINIME_T5_URL"] . "/command?text=" . urlencode($TEST_TEXT));
+
         $preCommand=json_decode($command,true);
         
         if ($preCommand["is_command"]=="ExchangeItems")

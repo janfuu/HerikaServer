@@ -65,7 +65,10 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 
 # Create required directories
-RUN mkdir -p /var/www/html/HerikaServer/{connector,tts,data} && mkdir /var/www/html/data/
+RUN mkdir -p /var/www/html/HerikaServer/connector \
+    /var/www/html/HerikaServer/tts \
+    /var/www/html/HerikaServer/data \
+    /var/www/html/data/
 
 # Initialize composer.json files
 COPY connector/composer.json /var/www/html/HerikaServer/connector/

@@ -7,4 +7,4 @@ Containerized deployment of [CHIM Server](https://github.com/abeiro/HerikaServer
 `docker pull ghcr.io/janfuu/chim-php-server:latest`  
 
 Needs at least an additional PostgreSQL database container (with vector extensions).  
-Example docker-compose.yml with xtts and minime-t5 (WIP) in [./examples](./examples)
+Example docker-compose.yml with xtts and minime-t5 in [./examples](./examples)

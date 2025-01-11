@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: docker.io/pgvector/pgvector:pg15
+    image: docker.io/pgvector/pgvector:pg16
     environment:
       TZ: 'Europe/Berlin'
       POSTGRES_DB: dwemer
@@ -12,45 +12,36 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    networks:
-      - skyrimai_network
 
   web:
     image: ghcr.io/janfuu/chim-php-server:latest
     container_name: chim-php-server
-    build: .
     ports:
       - "8081:80"
     volumes:
-      - herika_data:/var/www/html
-    # depends_on:
-    #   - db
+      - herika_data_ext:/var/www/html/ext
+      - herika_data_conf:/var/www/html/conf
+      - herika_data_soundcache:/var/www/html/soundcache
     environment:
       TZ: 'Europe/Berlin'
-      DB_HOST: db
+      DB_HOST: localhost  # Users should change this to their host IP
       DB_PORT: 5432
       DB_NAME: dwemer
       DB_USER: dwemer
-      DB_PASSWORD: dwemer   
-    networks:
-      - skyrimai_network
-    command: ["/usr/local/bin/wait-for-it", "db:5432", "--", "sh", "-c", "apache2ctl start && sleep infinity"]
+      DB_PASSWORD: dwemer
 
   xtts-api-server:
     image: docker.io/augustobeiro/aiff-xtts-api-server:latest
     container_name: xtts-api-server
     environment:
       TZ: 'Europe/Berlin'
-      NVIDIA_VISIBLE_DEVICES: all  # Expose all GPUs to the container
+      NVIDIA_VISIBLE_DEVICES: all
     security_opt:
-      - label=disable # For podman compatibility
+      - label=disable  # For podman compatibility
     ports:
       - "8020:8020"
     volumes:
       - xtts_data:/app/xtts-api-server/xtts-server
-    networks: 
-      - skyrimai_network
-    # append --lowvram or --deepspeed to command xtts_api_server to use less VRAM or DeepSpeed for inference
     command: >
       bash -c "cd /app/xtts-api-server && python3 -m xtts_api_server --listen -p 8020 -t 'http://localhost:8020' -sf 'xtts-server/speakers' -o 'xtts-server/output' -mf 'xtts-server/models' --deepspeed"
     deploy:
@@ -66,25 +57,22 @@ services:
     container_name: minime-t5
     environment:
       TZ: 'Europe/Berlin'
-      NVIDIA_VISIBLE_DEVICES: all  # Expose all GPUs to the container
+      NVIDIA_VISIBLE_DEVICES: all
     security_opt:
       - label=disable
     ports:
       - "8082:8082"
-    networks:
-      - skyrimai_network
     deploy:
         resources:
           reservations:
             devices:
               - driver: nvidia
                 device_ids: ['0']
-                capabilities: [gpu]  
-networks:
-  skyrimai_network:
-    driver: bridge  
+                capabilities: [gpu]
 
 volumes:
   postgres_data:
-  herika_data:
+  herika_data_ext:
+  herika_data_conf:
+  herika_data_soundcache:
   xtts_data:

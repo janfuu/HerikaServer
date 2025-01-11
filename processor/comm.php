@@ -1,4 +1,5 @@
 <?php
+error_log("Starting request processing");
 
 $MUST_END=false;
 
@@ -137,15 +138,21 @@ if ($gameRequest[0] == "init") { // Reset responses if init sent (Think about th
 
 
 } elseif ($gameRequest[0] == "request") { // Just requested response
-    // Do nothing
+    error_log("Processing request type message");
+    
     $responseDataMl = DataDequeue();
+    error_log("Response data: " . print_r($responseDataMl, true));
     foreach ($responseDataMl as $responseData) {
-        echo "{$responseData["actor"]}|{$responseData["action"]}|{$responseData["text"]}\r\n";
+        $response = "{$responseData["actor"]}|{$responseData["action"]}|{$responseData["text"]}\r\n";
+        error_log("Sending response: " . $response);
+        echo $response;
     }
+    
     if (time()%5==0)
         logEvent($gameRequest);
     
     $MUST_END=true;
+
 
     // NEW METHODS FROM HERE
 } elseif ($gameRequest[0] == "_quest") {

@@ -1,20 +1,11 @@
 <?php
 session_start();
-
-// Enable error reporting (for development/testing)
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-// Database connection details
-$host = 'db';
-$port = '5432';
-$dbname = 'dwemer';
-$schema = 'public';
-$username = 'dwemer';
-$password = 'dwemer';
+require_once(__DIR__ . "/../../lib/db_helper.php");
+$conn = pg_connect(get_db_connection_string());
 
-// Connect to the database
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
 if (!$conn) {
     echo "Failed to connect to the database: " . pg_last_error();
     exit;

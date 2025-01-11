@@ -1,14 +1,8 @@
 <?php
 if (isset($_GET['reset_tables'])) {
-    $host = 'db';
-    $port = '5432';
-    $dbname = 'dwemer';
-    $username = 'dwemer';
-    $password = 'dwemer';
-
+    require_once(__DIR__ . "/../../../lib/db_helper.php");
     try {
-        $conn = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
-
+        $conn = pg_connect(get_db_connection_string());
         if (!$conn) {
             throw new Exception("Failed to connect to database.");
         }
@@ -49,15 +43,9 @@ if (isset($_GET['reset_tables'])) {
 }
 
 if (isset($_GET['check_tables'])) {
-    $host = 'db';
-    $port = '5432';
-    $dbname = 'dwemer';
-    $username = 'dwemer';
-    $password = 'dwemer';
-
+    require_once(__DIR__ . "/../../../lib/db_helper.php");
     try {
-        $conn = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
-
+        $conn = pg_connect(get_db_connection_string());
         if (!$conn) {
             throw new Exception("Failed to connect to database.");
         }

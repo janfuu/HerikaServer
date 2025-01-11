@@ -37,13 +37,8 @@ class connector
 
     private function connectDB()
     {
-        $host = 'db';
-        $port = '5432';
-        $dbname = 'dwemer';
-        $username = 'dwemer';
-        $password = 'dwemer';
-
-        $this->conn = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
+        require_once(__DIR__ . "/../lib/db_helper.php");
+        $this->conn = pg_connect(get_db_connection_string());
         if (!$this->conn) {
             error_log("Failed to connect to PostgreSQL database!");
         }

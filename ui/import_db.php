@@ -1,22 +1,11 @@
 <?php
 session_start();
-
-// Enable error reporting (for development purposes)
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-// Paths
 $rootPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
 $enginePath = $rootPath . ".." . DIRECTORY_SEPARATOR;
-// The $configFilepath variable is not used in the script, so it can be removed.
-
-// Database connection details
-$host = 'db';
-$port = '5432';
-$dbname = 'dwemer';
-$schema = 'public';
-$username = 'dwemer';
-$password = 'dwemer';
+require_once($enginePath . "lib/db_helper.php");
 
 // Initialize message variable
 $message = '';
@@ -52,14 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (move_uploaded_file($fileTmpPath, $destPath)) {
                 // Proceed to restore the database
                 // Connect to the database
-                $conn = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
+                $conn = pg_connect(get_db_connection_string());
 
                 if (!$conn) {
                     $message .= "<p>Failed to connect to database: " . pg_last_error() . "</p>";
                 } else {
+                    $dbparams = get_db_params();
                     // Drop and recreate database schema and extensions
                     $Q = array();
-                    $Q[] = "DROP SCHEMA IF EXISTS $schema CASCADE";
+                    $Q[] = "DROP SCHEMA IF EXISTS {$dbparams['schema']} CASCADE";
                     $Q[] = "DROP EXTENSION IF EXISTS vector CASCADE";
                     $Q[] = "CREATE SCHEMA $schema";
                     $Q[] = "CREATE EXTENSION vector";
@@ -82,8 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $sqlFile = $destPath;
 
                         // Command to import SQL file using psql
-                        $psqlCommand = "PGPASSWORD=" . escapeshellarg($password) . " psql -h " . escapeshellarg($host) . " -p " . escapeshellarg($port) . " -U " . escapeshellarg($username) . " -d " . escapeshellarg($dbname) . " -f " . escapeshellarg($sqlFile);
-
+                        $psqlCommand = "PGPASSWORD=" . escapeshellarg($dbparams['password']) . 
+                                        " psql -h " . escapeshellarg($dbparams['host']) . 
+                                        " -p " . escapeshellarg($dbparams['port']) . 
+                                        " -U " . escapeshellarg($dbparams['user']) . 
+                                        " -d " . escapeshellarg($dbparams['dbname']) . 
+                                        " -f " . escapeshellarg($sqlFile);
                         // Execute psql command
                         $output = [];
                         $returnVar = 0;

@@ -6,16 +6,8 @@ date_default_timezone_set('UTC');
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-// Database connection details
-$host = 'db';
-$port = '5432';
-$dbname = 'dwemer';
-$schema = 'public';
-$username = 'dwemer';
-$password = 'dwemer';
-
-// Connect to the database
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
+require_once(__DIR__ . "/../../../lib/db_helper.php");
+$conn = pg_connect(get_db_connection_string());
 
 if (!$conn) {
     echo "<div class='message'>Failed to connect to database: " . pg_last_error() . "</div>";

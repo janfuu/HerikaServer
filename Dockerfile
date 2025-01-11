@@ -53,6 +53,7 @@ RUN docker-php-ext-install -j$(nproc) \
     mbstring \
     xml \
     curl \
+    sysvsem \
     && docker-php-ext-enable opcache
 
 # Install Composer:
@@ -87,23 +88,30 @@ COPY ./docker/index.html /var/www/html/
 COPY ./docker/dwemer.sql /var/www/html/data/
 
 # Change ownership of the files to dwemer:www-data
-RUN chown -R $USER:www-data /var/www/html && \
+RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 775 /var/www/html
 
 # Copy the connection check script into the container
 COPY ./docker/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
 
-# Copy entrypoint script
-COPY ./docker/entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
+# Copy initialization script
+COPY ./docker/init-db.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/init-db.sh
 
+RUN echo "php_value error_reporting E_ALL" >> /etc/apache2/conf-enabled/php.conf && \
+    echo "php_flag display_errors On" >> /etc/apache2/conf-enabled/php.conf && \
+    echo "php_flag log_errors On" >> /etc/apache2/conf-enabled/php.conf && \
+    echo "php_value error_log /dev/stderr" >> /etc/apache2/conf-enabled/php.conf && \
+    echo "ErrorLog /dev/stderr" >> /etc/apache2/conf-enabled/errors.conf && \
+    echo "LogLevel debug" >> /etc/apache2/conf-enabled/errors.conf \
+    echo "error_reporting = E_ALL" > /usr/local/etc/php/conf.d/error_reporting.ini
 # Redirect logs to Docker log collector
-RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
-    ln -sf /dev/stderr /var/log/apache2/error.log
+# RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
+#     ln -sf /dev/stderr /var/log/apache2/error.log
     
 # Expose port 80 for HTTP traffic
 EXPOSE 80
 
-# Start Apache in the foreground
-CMD ["/usr/local/bin/entrypoint.sh"]
+# Start Apache in the foreground with DB init
+CMD ["/bin/bash", "-c", "/usr/local/bin/init-db.sh && apache2-foreground"]

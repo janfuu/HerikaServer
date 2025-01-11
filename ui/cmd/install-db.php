@@ -1,23 +1,17 @@
 <?php
-
 $enginePath =__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;
+require_once($enginePath . "lib/db_helper.php");
 
-// Database connection details
-$host = 'db';
-$port = '5432';
-$dbname = 'dwemer';
-$schema = 'public';
-$username = 'dwemer';
-$password = 'dwemer';
-
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
+$conn = pg_connect(get_db_connection_string());
 
 if (!$conn) {
     echo "Failed to connect to database.\n";
     die();
 }
 
+$dbparams = get_db_params();
 // Drop and recreate database
+$schema = getenv('DB_SCHEMA') ?: 'public';  // Add schema to environment variables
 $Q[]="DROP SCHEMA IF EXISTS $schema CASCADE";
 $Q[]="DROP EXTENSION IF EXISTS vector CASCADE";
 $Q[]="CREATE SCHEMA $schema";
@@ -34,12 +28,17 @@ foreach ($Q as $QS) {
   
 }
 
+
 // Path to SQL file to import
 $sqlFile = $enginePath.'/data/database_default.sql';
 
 // Command to import SQL file using psql
-$psqlCommand = "PGPASSWORD=$password psql -h $host -p $port -U $username -d $dbname -f $sqlFile";
-
+$psqlCommand = "PGPASSWORD=" . escapeshellarg($dbparams['password']) . 
+               " psql -h " . escapeshellarg($dbparams['host']) . 
+               " -p " . escapeshellarg($dbparams['port']) . 
+               " -U " . escapeshellarg($dbparams['user']) . 
+               " -d " . escapeshellarg($dbparams['dbname']) . 
+               " -f " . escapeshellarg($sqlFile);
 // Execute psql command
 $output = [];
 $returnVar = 0;

@@ -1,9 +1,11 @@
 <?php
-
 session_start();
 
-$enginePath=__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;;
+$enginePath=__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;
 require($enginePath.DIRECTORY_SEPARATOR."conf".DIRECTORY_SEPARATOR.'conf_loader.php');
+
+error_log("Engine path: " . $enginePath);
+error_log("Session profile: " . (isset($_SESSION["PROFILE"]) ? $_SESSION["PROFILE"] : "not set"));
 
 $confSchema=conf_loader_load_schema();
 
@@ -96,42 +98,38 @@ foreach ($_POST as $k=>$v) {
 $buffer.="?>".PHP_EOL;
 
 if (isset($_GET["save"])) {
-    if (isset($_SESSION["PROFILE"]))
-        $result=file_put_contents($_SESSION["PROFILE"],$buffer);
-    else
-        $result=file_put_contents($enginePath."conf".DIRECTORY_SEPARATOR."conf.php",$buffer);
-    echo '<!DOCTYPE html>
-        <html lang="en" >
-        <head>
-        <style>
-        body {
-        background-color: black;
-        color: white;
-        font-size: small ; 
-        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
-        width: 100%;
-        display: inline-block;
-        }
-        </style>
-        </head>
-        <body>
-    ';
-    
-    
-    if ($result!==false) {
-        echo "Writing config file.....";
-        echo '<script>alert("Config file '.basename($_SESSION["PROFILE"]).' has been written");parent.location.href="../conf_wizard.php?ts='.(time()."#".$_GET["sc"]).'"</script>';
+    $targetFile = null;
+    if (isset($_SESSION["PROFILE"])) {
+        $targetFile = $_SESSION["PROFILE"];
     } else {
-        echo "Writing config file.....";
-        echo "Some error ocurred.".PHP_EOL;
-        
+        $targetFile = $enginePath."conf".DIRECTORY_SEPARATOR."conf.php";
     }
     
+    error_log("Attempting to write config to: " . $targetFile);
     
+    // Check directory permissions
+    $targetDir = dirname($targetFile);
+    if (!is_writable($targetDir)) {
+        error_log("Directory not writable: " . $targetDir);
+        echo "Error: Directory not writable";
+        die();
+    }
     
+    // Try to write the file
+    $result = file_put_contents($targetFile, $buffer);
+    if ($result !== false) {
+        error_log("Successfully wrote config file: " . $targetFile);
+        echo "Writing config file.....";
+        echo '<script>alert("Config file '.basename($targetFile).' has been written");parent.location.href="../conf_wizard.php?ts='.(time()."#".$_GET["sc"]).'"</script>';
+    } else {
+        error_log("Failed to write config file: " . $targetFile);
+        error_log("PHP error: " . error_get_last()['message']);
+        echo "Writing config file.....";
+        echo "Some error occurred.".PHP_EOL;
+        echo "Error details: " . error_get_last()['message'];
+    }
 } else {
-    $_POST["text"]=$buffer;
+    $_POST["text"] = $buffer;
     require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."conf_checker.php");
 }
-
 ?>

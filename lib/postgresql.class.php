@@ -2,16 +2,23 @@
 
 class sql
 {
-    private static $link = null;
+    protected static $link = null;
 
     public function __construct()
-    {
-        $connString = "host=db dbname=dwemer user=dwemer password=dwemer";
-        self::$link = pg_connect($connString);
-        if (!self::$link) {
-            die("Error in connection: " . pg_last_error());
-        }
+{
+    $host = getenv('DB_HOST') ?: 'db';
+    $dbname = getenv('DB_NAME') ?: 'dwemer';
+    $user = getenv('DB_USER') ?: 'dwemer';
+    $password = getenv('DB_PASSWORD') ?: 'dwemer';
+    
+    $connString = "host=$host dbname=$dbname user=$user password=$password";
+    
+    self::$link = pg_connect($connString);
+    if (!self::$link) {
+        error_log("Database connection failed: " . pg_last_error());  // Keep critical errors
+        die("Error in connection: " . pg_last_error());
     }
+}
 
     public function __destruct()
     {
@@ -188,8 +195,10 @@ class sql
         }
 
         return true;
-}
-
+    }
+    public function getLink() {
+        return self::$link;
+    }
 
 }
 

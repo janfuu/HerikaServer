@@ -12,13 +12,8 @@ $configFilepath = $rootPath . "conf" . DIRECTORY_SEPARATOR;
 
 $configFilepath=realpath($configFilepath);
 
-// Database connection details
-$host = 'db';
-$port = '5432';
-$dbname = 'dwemer';
-$schema = 'public';
-$username = 'dwemer';
-$password = 'dwemer';
+// After your paths setup...
+require_once($enginePath . "lib/db_helper.php");
 
 // Profile selection
 $GLOBALS["PROFILES"] = []; // Initialize the PROFILES array
@@ -65,7 +60,7 @@ if (isset($_SESSION["PROFILE"]) && in_array($_SESSION["PROFILE"], $GLOBALS["PROF
 $message = '';
 
 // Connect to the database
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
+$conn = pg_connect(get_db_connection_string());
 
 if (!$conn) {
     echo "<div class='message'>Failed to connect to database: " . pg_last_error() . "</div>";

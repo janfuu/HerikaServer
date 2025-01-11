@@ -12,3 +12,5 @@ yarn-error.log
 zzz/
 examples/
 conf/conf.php
+pod-setup.sh
+docker-compose-test.yml

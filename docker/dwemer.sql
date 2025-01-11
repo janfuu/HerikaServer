@@ -191,7 +191,10 @@ ALTER TABLE public.combined_animations OWNER TO dwemer;
 CREATE TABLE public.npc_templates (
     npc_name character varying(128) NOT NULL,
     npc_pers text NOT NULL,
-    npc_misc text
+    npc_misc text,
+    melotts_voiceid text,
+    xtts_voiceid text,
+    xvasynth_voiceid text
 );
 
 
@@ -204,7 +207,10 @@ ALTER TABLE public.npc_templates OWNER TO dwemer;
 CREATE TABLE public.npc_templates_custom (
     npc_name character varying(128) NOT NULL,
     npc_pers text NOT NULL,
-    npc_misc text
+    npc_misc text,
+    melotts_voiceid text,
+    xtts_voiceid text,
+    xvasynth_voiceid text
 );
 
 

@@ -86,16 +86,17 @@ COPY . /var/www/html/HerikaServer/
 COPY ./docker/index.html /var/www/html/
 COPY ./docker/dwemer.sql /var/www/html/data/
 
-# Obsolte: Install Composer dependencies for all composer.json files in /var/www/html/HerikaServer and its subfolders
-# RUN find /var/www/html/HerikaServer -name "composer.json" -execdir composer install \;
+# Change ownership of the files to dwemer:www-data
+RUN chown -R $USER:www-data /var/www/html && \
+    chmod -R 775 /var/www/html
 
 # Copy the connection check script into the container
 COPY ./docker/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it
 
-# Change ownership of the files to dwemer:www-data
-RUN chown -R $USER:www-data /var/www/html && \
-    chmod -R 775 /var/www/html
+# Copy entrypoint script
+COPY ./docker/entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Redirect logs to Docker log collector
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
@@ -105,4 +106,4 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
 EXPOSE 80
 
 # Start Apache in the foreground
-CMD ["apache2-foreground"]
+CMD ["/usr/local/bin/entrypoint.sh"]

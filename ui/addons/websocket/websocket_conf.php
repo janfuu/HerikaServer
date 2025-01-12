@@ -1,6 +1,7 @@
 <?php
 if (isset($_GET['reset_tables'])) {
-    require_once(__DIR__ . "/../../../lib/db_helper.php");
+    $libPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR;
+    require_once($libPath . "db_helper.php");
     try {
         $conn = pg_connect(get_db_connection_string());
         if (!$conn) {
@@ -43,7 +44,8 @@ if (isset($_GET['reset_tables'])) {
 }
 
 if (isset($_GET['check_tables'])) {
-    require_once(__DIR__ . "/../../../lib/db_helper.php");
+    $libPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR;
+    require_once($libPath . "db_helper.php");
     try {
         $conn = pg_connect(get_db_connection_string());
         if (!$conn) {

@@ -37,7 +37,8 @@ class connector
 
     private function connectDB()
     {
-        require_once(__DIR__ . "/../lib/db_helper.php");
+        $libPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR;
+        require_once($libPath . "db_helper.php");
         $this->conn = pg_connect(get_db_connection_string());
         if (!$this->conn) {
             error_log("Failed to connect to PostgreSQL database!");

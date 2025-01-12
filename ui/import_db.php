@@ -4,8 +4,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 $rootPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
-$enginePath = $rootPath . ".." . DIRECTORY_SEPARATOR;
-require_once($enginePath . "lib/db_helper.php");
+$libPath = $rootPath . "lib" . DIRECTORY_SEPARATOR;
+require_once($libPath . "db_helper.php");
 
 // Initialize message variable
 $message = '';

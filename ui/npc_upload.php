@@ -10,10 +10,10 @@ ini_set('display_errors', '1');
 $rootPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
 $enginePath = $rootPath . ".." . DIRECTORY_SEPARATOR;
 $configFilepath = $rootPath . "conf" . DIRECTORY_SEPARATOR;
+$libPath = $rootPath . "lib" . DIRECTORY_SEPARATOR;
+require_once($libPath . "db_helper.php");
 
 $configFilepath=realpath($configFilepath);
-
-require_once($enginePath . "lib/db_helper.php");
 
 // Profile selection
 $GLOBALS["PROFILES"] = []; // Initialize the PROFILES array

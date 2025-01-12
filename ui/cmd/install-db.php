@@ -1,6 +1,7 @@
 <?php
 $enginePath =__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;
-require_once($enginePath . "lib/db_helper.php");
+$libPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR;
+require_once($libPath . "db_helper.php");
 
 $conn = pg_connect(get_db_connection_string());
 

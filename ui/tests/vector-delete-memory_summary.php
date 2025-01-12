@@ -3,7 +3,8 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require_once(__DIR__ . "/../../lib/db_helper.php");
+$libPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR;
+require_once($libPath . "db_helper.php");
 $conn = pg_connect(get_db_connection_string());
 
 if (!$conn) {

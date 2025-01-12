@@ -17,8 +17,9 @@ class websocket implements MessageComponentInterface {
     }
 
     private function connectDB() {
-        require_once(__DIR__ . "/../lib/db_helper.php");
-        $this->db_conn = pg_connect(get_db_connection_string());
+        $libPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR;
+        require_once($libPath . "db_helper.php");
+        $this->conn = pg_connect(get_db_connection_string());
         if (!$this->db_conn) {
             error_log("WebSocket server failed to connect to the database!");
         }

@@ -248,19 +248,24 @@ ALTER TABLE public.npc_templates_custom OWNER TO dwemer;
 -- Name: combined_npc_templates; Type: VIEW; Schema: public; Owner: dwemer
 --
 
-CREATE VIEW public.combined_npc_templates AS
+CREATE OR REPLACE VIEW public.combined_npc_templates AS
  SELECT c.npc_name,
     c.npc_pers,
-    c.npc_misc
+    c.npc_misc,
+    c.melotts_voiceid,
+    c.xtts_voiceid,
+    c.xvasynth_voiceid
    FROM public.npc_templates_custom c
 UNION ALL
  SELECT t.npc_name,
     t.npc_pers,
-    t.npc_misc
+    t.npc_misc,
+    t.melotts_voiceid,
+    t.xtts_voiceid,
+    t.xvasynth_voiceid
    FROM (public.npc_templates t
      LEFT JOIN public.npc_templates_custom c ON (((t.npc_name)::text = (c.npc_name)::text)))
   WHERE (c.npc_name IS NULL);
-
 
 ALTER TABLE public.combined_npc_templates OWNER TO dwemer;
 

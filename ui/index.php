@@ -532,44 +532,27 @@ include("tmpl/navbar.php");
                     $zip->close();
                     unlink($zipFile);
     
-                    // Recursively set permissions to 0777 and change owner and group to 'dwemer'
-                    function chmod_chown_chgrp_r($path, $filemode, $user, $group) {
+                // Just set permissions, skip ownership changes in container
+                    function chmod_r($path, $filemode) {
                         if (is_dir($path)) {
-                            // Change permissions, owner, and group for the directory
                             if (!chmod($path, $filemode)) {
-                                echo "Failed to chmod directory $path<br>";
+                                error_log("Failed to chmod directory $path");
                             }
-                            if (!chown($path, $user)) {
-                                echo "Failed to chown directory $path<br>";
-                            }
-                            if (!chgrp($path, $group)) {
-                                echo "Failed to chgrp directory $path<br>";
-                            }
-    
-                            // Process contents of the directory
                             $objects = scandir($path);
                             foreach ($objects as $file) {
                                 if ($file != '.' && $file != '..') {
-                                    $fullpath = $path . '/' . $file;
-                                    chmod_chown_chgrp_r($fullpath, $filemode, $user, $group);
+                                    chmod_r($path . '/' . $file, $filemode);
                                 }
                             }
                         } else {
-                            // Change permissions, owner, and group for the file
                             if (!chmod($path, $filemode)) {
-                                echo "Failed to chmod file $path<br>";
-                            }
-                            if (!chown($path, $user)) {
-                                echo "Failed to chown file $path<br>";
-                            }
-                            if (!chgrp($path, $group)) {
-                                echo "Failed to chgrp file $path<br>";
+                                error_log("Failed to chmod file $path");
                             }
                         }
                     }
-    
-                    // Set permissions and ownership
-                    chmod_chown_chgrp_r($targetPath, 0777, 'dwemer', 'www-data');
+
+                    // Set only permissions
+                    chmod_r($targetPath, 0777);
     
                     $successMessage = 'MinAI plugin downloaded and installed successfully.';
                 } else {

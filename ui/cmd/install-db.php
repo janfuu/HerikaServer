@@ -3,6 +3,8 @@ $enginePath =__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY
 $libPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "lib" . DIRECTORY_SEPARATOR;
 require_once($libPath . "db_helper.php");
 
+$dbparams = get_db_params();
+
 $conn = pg_connect(get_db_connection_string());
 
 if (!$conn) {
@@ -10,9 +12,7 @@ if (!$conn) {
     die();
 }
 
-$dbparams = get_db_params();
-// Drop and recreate database
-$schema = getenv('DB_SCHEMA') ?: 'public';  // Add schema to environment variables
+$schema = $dbparams['schema'];
 $Q[]="DROP SCHEMA IF EXISTS $schema CASCADE";
 $Q[]="DROP EXTENSION IF EXISTS vector CASCADE";
 $Q[]="CREATE SCHEMA $schema";

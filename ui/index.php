@@ -2,8 +2,11 @@
 error_reporting(E_ERROR);
 session_start();
 
-$configFilepath = __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."conf".DIRECTORY_SEPARATOR;
-$rootEnginePath = __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR;
+$rootPath = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR;
+$libPath = $rootPath . "lib" . DIRECTORY_SEPARATOR;
+$configFilepath = $rootPath . "conf" . DIRECTORY_SEPARATOR;
+
+require_once($libPath . "db_helper.php");
 
 if (!file_exists($configFilepath."conf.php")) {
     @copy($configFilepath."conf.sample.php", $configFilepath."conf.php");   // Defaults
@@ -15,8 +18,7 @@ if (!file_exists($configFilepath."conf.php")) {
 }
 
 
-require_once($rootEnginePath . "conf".DIRECTORY_SEPARATOR."conf.php");
-
+require_once($configFilepath . "conf.php");
 $configFilepath=realpath($configFilepath);
 
 // Profile selection
@@ -45,14 +47,14 @@ if (isset($_SESSION["PROFILE"]) && in_array($_SESSION["PROFILE"],$GLOBALS["PROFI
 
 
 
-
-require_once($rootEnginePath . "lib" .DIRECTORY_SEPARATOR."{$GLOBALS["DBDRIVER"]}.class.php");
-require_once($rootEnginePath . "lib" .DIRECTORY_SEPARATOR."misc_ui_functions.php");
-require_once($rootEnginePath . "lib" .DIRECTORY_SEPARATOR."chat_helper_functions.php");
-
+require_once($libPath . "{$GLOBALS["DBDRIVER"]}.class.php");
+require_once($libPath . "misc_ui_functions.php");
+require_once($libPath . "chat_helper_functions.php");
 
 ob_start();
 include("tmpl/head.html");
+
+$dbparams = get_db_params();
 $db = new sql();
 
 

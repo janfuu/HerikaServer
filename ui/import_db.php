@@ -47,9 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $message .= "<p>Failed to connect to database: " . pg_last_error() . "</p>";
                 } else {
                     $dbparams = get_db_params();
+                    $schema = $dbparams['schema'];
+
                     // Drop and recreate database schema and extensions
                     $Q = array();
-                    $Q[] = "DROP SCHEMA IF EXISTS {$dbparams['schema']} CASCADE";
+                    $Q[] = "DROP SCHEMA IF EXISTS $schema CASCADE";
                     $Q[] = "DROP EXTENSION IF EXISTS vector CASCADE";
                     $Q[] = "CREATE SCHEMA $schema";
                     $Q[] = "CREATE EXTENSION vector";

@@ -13,6 +13,9 @@ $configFilepath = $rootPath . "conf" . DIRECTORY_SEPARATOR;
 $libPath = $rootPath . "lib" . DIRECTORY_SEPARATOR;
 require_once($libPath . "db_helper.php");
 
+$dbparams = get_db_params();
+$schema = $dbparams['schema']; 
+
 $configFilepath=realpath($configFilepath);
 
 // Profile selection

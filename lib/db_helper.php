@@ -14,4 +14,9 @@ function get_db_connection_string() {
     $dbparams = get_db_params();
     return "host={$dbparams['host']} port={$dbparams['port']} dbname={$dbparams['dbname']} user={$dbparams['user']} password={$dbparams['password']}";
 }
+
+function get_db_schema() {
+    $dbparams = get_db_params();
+    return $dbparams['schema'];
+}
 ?>
